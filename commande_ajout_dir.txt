@@ -1,0 +1,2 @@
+mkdir -pv Album/{config,src/Album/{Controller,Form,Model},view/album/album}
+mkdir -pv Classe/{config,src/Classe/{Controller,Form,Model},view/classe/classe}
