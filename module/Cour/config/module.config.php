@@ -2,22 +2,22 @@
 return array(
      'controllers' => array(
          'invokables' => array(
-             'Classe\Controller\Classe' => 'Classe\Controller\ClasseController',
+             'Cour\Controller\Cour' => 'Cour\Controller\CourController',
          ),
      ),
           // The following section is new and should be added to your file
     'router' => array(
         'routes' => array(
-            'classe' => array(
+            'cour' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/classe[/:action][/:id]',
+                    'route'    => '/cour[/:action][/:id]',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id'     => '[0-9]+',
                     ),
                     'defaults' => array(
-                        'controller' => 'Classe\Controller\Classe',
+                        'controller' => 'Cour\Controller\Cour',
                         'action'     => 'index',
                     ),
                 ),
@@ -26,7 +26,7 @@ return array(
     ),
      'view_manager' => array(
          'template_path_stack' => array(
-             'classe' => __DIR__ . '/../view',
+             'cour' => __DIR__ . '/../view',
          ),
      ),
  );

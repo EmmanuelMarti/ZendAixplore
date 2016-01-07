@@ -1,32 +1,32 @@
 <?php 
- namespace Classe\Controller;
+ namespace Cour\Controller;
 
  use Zend\Mvc\Controller\AbstractActionController;
  use Zend\View\Model\ViewModel;
- use Classe\Model\Classe;
- use Classe\Form\ClasseForm;
+ use Cour\Model\Cour;
+ use Cour\Form\CourForm;
 
- class ClasseController extends AbstractActionController{
+ class CourController extends AbstractActionController{
  	protected $classeTable;
      public function indexAction(){
      	 return new ViewModel(array(
-             'classes' => $this->getClasseTable()->fetchAll(),
+             'cours' => $this->getCourTable()->fetchAll(),
          ));
     }
 
      public function addAction(){
-     	$form = new ClasseForm();
+     	$form = new CourForm();
         $form->get('submit')->setValue('Add');
 
         $request = $this->getRequest();
         if ($request->isPost()) {
-            $classe = new Classe();
-            $form->setInputFilter($classe->getInputFilter());
+            $classe = new Cour();
+            $form->setInputFilter($cour->getInputFilter());
             $form->setData($request->getPost());
 
             if ($form->isValid()) {
-                $classe->exchangeArray($form->getData());
-                $this->getClasseTable()->saveClasse($classe);
+                $cour->exchangeArray($form->getData());
+                $this->getCourTable()->saveCour($classe);
 
                  // Redirect to list of albums
                 return $this->redirect()->toRoute('classe');
@@ -47,28 +47,28 @@
          // Get the Album with the specified id.  An exception is thrown
          // if it cannot be found, in which case go to the index page.
          try {
-             $classe = $this->getClasseTable()->getClasse($id);
+             $cour = $this->getCourTable()->getCour($id);
          }
          catch (\Exception $ex) {
-             return $this->redirect()->toRoute('classe', array(
+             return $this->redirect()->toRoute('cour', array(
                  'action' => 'index'
              ));
          }
 
-         $form  = new ClasseForm();
-         $form->bind($classe);
+         $form  = new CourForm();
+         $form->bind($cour);
          $form->get('submit')->setAttribute('value', 'Edit');
 
          $request = $this->getRequest();
          if ($request->isPost()) {
-             $form->setInputFilter($classe->getInputFilter());
+             $form->setInputFilter($cour->getInputFilter());
              $form->setData($request->getPost());
 
              if ($form->isValid()) {
-                 $this->getClasseTable()->saveClasse($classe);
+                 $this->getCourTable()->saveCour($cour);
 
                  // Redirect to list of albums
-                 return $this->redirect()->toRoute('classe');
+                 return $this->redirect()->toRoute('cour');
              }
          }
 
@@ -81,7 +81,7 @@
      public function deleteAction(){
         $id = (int) $this->params()->fromRoute('id', 0);
          if (!$id) {
-             return $this->redirect()->toRoute('classe');
+             return $this->redirect()->toRoute('cour');
          }
 
          $request = $this->getRequest();
@@ -90,25 +90,25 @@
 
              if ($del == 'Yes') {
                  $id = (int) $request->getPost('id');
-                 $this->getClasseTable()->deleteClasse($id);
+                 $this->getCourTable()->deleteCour($id);
              }
 
              // Redirect to list of albums
-             return $this->redirect()->toRoute('classe');
+             return $this->redirect()->toRoute('cour');
          }
 
          return array(
              'id'    => $id,
-             'classe' => $this->getClasseTable()->getClasse($id)
+             'cour' => $this->getCourTable()->getCour($id)
          );
     }
-    public function getClasseTable()
+    public function getCourTable()
     {
-         if (!$this->classeTable) {
+         if (!$this->courTable) {
              $sm = $this->getServiceLocator();
-             $this->classeTable = $sm->get('Classe\Model\ClasseTable');
+             $this->courTable = $sm->get('Cour\Model\CourTable');
          }
-         return $this->classeTable;
+         return $this->courTable;
      }
 }
 

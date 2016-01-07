@@ -1,15 +1,15 @@
 <?php 
 
-namespace Classe\Form;
+namespace Cour\Form;
 
  use Zend\Form\Form;
 
- class ClasseForm extends Form
+ class CourForm extends Form
  {
      public function __construct($name = null)
      {
          // we want to ignore the name passed
-         parent::__construct('classe');
+         parent::__construct('cour');
 
          $this->add(array(
              'name' => 'id',
@@ -19,7 +19,7 @@ namespace Classe\Form;
              'name' => 'name',
              'type' => 'Text',
              'options' => array(
-                 'label' => 'Class Name',
+                 'label' => 'Cour Name',
              ),
          ));
          $this->add(array(
