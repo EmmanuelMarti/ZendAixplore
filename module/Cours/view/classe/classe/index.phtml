@@ -1,0 +1,27 @@
+<?php 
+
+$name = 'My classe';
+$this->headTitle($name);
+?>
+<h1><?php echo $this->escapeHtml($name); ?></h1>
+ <p>
+ <a href="<?php echo $this->url('classe', array('action'=>'add'));?>">Add new class</a>
+ </p>
+
+<table class="table">
+ 	<tr>
+     	<th>Classe</th>
+    	<th>&nbsp;</th>
+ </tr>
+ <?php foreach ($classes as $classe) : ?>
+ <tr>
+     <td><?php echo $this->escapeHtml($classe->name);?></td>
+     <td>
+         <a href="<?php echo $this->url('classe',
+             array('action'=>'edit', 'id' => $classe->id));?>">Edit</a>
+         <a href="<?php echo $this->url('classe',
+             array('action'=>'delete', 'id' => $classe->id));?>">Delete</a>
+     </td>
+ </tr>
+ <?php endforeach; ?>
+ </table>
