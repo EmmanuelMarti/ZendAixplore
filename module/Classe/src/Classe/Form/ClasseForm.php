@@ -17,7 +17,8 @@ namespace Classe\Form;
          ));
          $this->add(array(
              'name' => 'name',
-             'type' => 'Text',
+             'id' => 'ck',
+             'type' => 'Textarea',
              'options' => array(
                  'label' => 'Class Name',
              ),
