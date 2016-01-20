@@ -9,3 +9,7 @@ nbproject
 .settings
 vendor
 composer.phar
+
+config/autoload/global.php
+
+config/autoload/global.php
