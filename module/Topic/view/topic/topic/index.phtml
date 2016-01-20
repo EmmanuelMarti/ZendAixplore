@@ -1,0 +1,27 @@
+<?php 
+
+$name = 'My topic';
+$this->headTitle($name);
+?>
+<h1><?php echo $this->escapeHtml($name); ?></h1>
+ <p>
+ <a href="<?php echo $this->url('topic', array('action'=>'add'));?>">Add new topic</a>
+ </p>
+
+<table class="table">
+ 	<tr>
+     	<th>topic</th>
+    	<th>&nbsp;</th>
+ </tr>
+ <?php foreach ($topics as $topic) : ?>
+ <tr>
+     <td><?php echo $this->escapeHtml($topic->name);?></td>
+     <td>
+         <a href="<?php echo $this->url('topic',
+             array('action'=>'edit', 'id' => $topic->id));?>">Edit</a>
+         <a href="<?php echo $this->url('topic',
+             array('action'=>'delete', 'id' => $topic->id));?>">Delete</a>
+     </td>
+ </tr>
+ <?php endforeach; ?>
+ </table>
