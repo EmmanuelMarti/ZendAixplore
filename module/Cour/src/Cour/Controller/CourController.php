@@ -7,7 +7,7 @@
  use Cour\Form\CourForm;
 
  class CourController extends AbstractActionController{
- 	protected $classeTable;
+ 	protected $courTable;
      public function indexAction(){
      	 return new ViewModel(array(
              'cours' => $this->getCourTable()->fetchAll(),
@@ -20,16 +20,16 @@
 
         $request = $this->getRequest();
         if ($request->isPost()) {
-            $classe = new Cour();
+            $cour = new Cour();
             $form->setInputFilter($cour->getInputFilter());
             $form->setData($request->getPost());
 
             if ($form->isValid()) {
                 $cour->exchangeArray($form->getData());
-                $this->getCourTable()->saveCour($classe);
+                $this->getCourTable()->saveCour($cour);
 
                  // Redirect to list of albums
-                return $this->redirect()->toRoute('classe');
+                return $this->redirect()->toRoute('cour');
             }
         }
         return array('form' => $form);
@@ -39,7 +39,7 @@
 
      	$id = (int) $this->params()->fromRoute('id', 0);
          if (!$id) {
-             return $this->redirect()->toRoute('classe', array(
+             return $this->redirect()->toRoute('cour', array(
                  'action' => 'add'
              ));
          }

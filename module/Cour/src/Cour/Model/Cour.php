@@ -1,11 +1,11 @@
 <?php 
 
-namespace Classe\Model;
+namespace Cour\Model;
 use Zend\InputFilter\InputFilter;
 use Zend\InputFilter\InputFilterAwareInterface;
 use Zend\InputFilter\InputFilterInterface;
 
-class Classe implements InputFilterAwareInterface{
+class Cour implements InputFilterAwareInterface{
 
 	public $id;
 	public $name;

@@ -1,9 +1,9 @@
 <?php 
-namespace Classe\Model;
+namespace Cour\Model;
 
 use Zend\Db\TableGateway\TableGateway;
 
- class ClasseTable
+ class CourTable
  {
      protected $tableGateway;
 
@@ -18,7 +18,7 @@ use Zend\Db\TableGateway\TableGateway;
          return $resultSet;
      }
 
-     public function getClasse($id)
+     public function getCour($id)
      {
          $id  = (int) $id;
          $rowset = $this->tableGateway->select(array('id' => $id));
@@ -29,25 +29,25 @@ use Zend\Db\TableGateway\TableGateway;
          return $row;
      }
 
-     public function saveClasse(Classe $classe)
+     public function saveCour(Cour $cour)
      {
          $data = array(
-             'name' => $classe->name
+             'name' => $cour->name
          );
 
-         $id = (int) $classe->id;
+         $id = (int) $cour->id;
          if ($id == 0) {
              $this->tableGateway->insert($data);
          } else {
-             if ($this->getClasse($id)) {
+             if ($this->getCour($id)) {
                  $this->tableGateway->update($data, array('id' => $id));
              } else {
-                 throw new \Exception('Classe id does not exist');
+                 throw new \Exception('Cour id does not exist');
              }
          }
      }
 
-     public function deleteClasse($id)
+     public function deleteCour($id)
      {
          $this->tableGateway->delete(array('id' => (int) $id));
      }

@@ -13,3 +13,7 @@ composer.phar
 config/autoload/global.php
 
 config/autoload/global.php
+
+module/Topic/Module.php
+
+module/Topic/src/Topic/Controller/TopicController.php
