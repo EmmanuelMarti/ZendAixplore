@@ -1,8 +1,12 @@
 <?php
 
 
+
 $title = 'Add new topic';
 $this->headTitle($title);
+
+$this->headScript()->appendFile($this->basePath('/js/ckeditor/ckeditor.js'));
+$this->headScript()->appendFile($this->basePath('/js/ckeditor/adapters/jquery.js'));
 ?>
 <h1><?php echo $this->escapeHtml($title); ?></h1>
 <?php
@@ -12,11 +16,12 @@ $form->prepare();
 echo $this->form()->openTag($form);
 echo $this->formHidden($form->get('id'));
 echo $this->formRow($form->get('name'));
+echo "<br />";
 echo $this->formSubmit($form->get('submit'));
 echo $this->form()->closeTag();
 
-
-
-
-
 ?>
+
+<script>
+	$('textarea').ckeditor();
+</script>

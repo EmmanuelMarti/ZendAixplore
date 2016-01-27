@@ -17,7 +17,8 @@ namespace Topic\Form;
          ));
          $this->add(array(
              'name' => 'name',
-             'type' => 'Text',
+             'id' => 'ck',
+             'type' => 'Textarea',
              'options' => array(
                  'label' => 'Topic Name',
              ),
