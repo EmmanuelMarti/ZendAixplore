@@ -17,7 +17,8 @@ namespace Cour\Form;
          ));
          $this->add(array(
              'name' => 'name',
-             'type' => 'Text',
+             'id' => 'ck',
+             'type' => 'Textarea',
              'options' => array(
                  'label' => 'Cour Name',
              ),
