@@ -10,7 +10,7 @@
  	protected $topicTable;
      public function indexAction(){
      	 return new ViewModel(array(
-             'cours' => $this->getTopicTable()->fetchAll(),
+             'topics' => $this->getTopicTable()->fetchAll(),
          ));
     }
 
@@ -65,7 +65,7 @@
              $form->setData($request->getPost());
 
              if ($form->isValid()) {
-                 $this->getCourTable()->saveCour($topic);
+                 $this->getTopicTable()->saveTopic($topic);
 
                  // Redirect to list of albums
                  return $this->redirect()->toRoute('topic');

@@ -3,7 +3,7 @@ namespace Topic\Model;
 
 use Zend\Db\TableGateway\TableGateway;
 
- class CTopicTable
+ class TopicTable
  {
      protected $tableGateway;
 

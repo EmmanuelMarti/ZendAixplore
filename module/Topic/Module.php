@@ -34,7 +34,7 @@ use Zend\Db\TableGateway\TableGateway;
     public function getServiceConfig(){
         return array(
             'factories' => array(
-                'Classe\Model\TopicTable' =>  function($sm) {
+                'Topic\Model\TopicTable' =>  function($sm) {
                     $tableGateway = $sm->get('TopicTableGateway');
                     $table = new TopicTable($tableGateway);
                     return $table;
