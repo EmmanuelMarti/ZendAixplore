@@ -1,12 +1,12 @@
 <?php 
-namespace Classe;
+namespace Cour;
 
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
-use Classe\Model\Classe;
-use Classe\Model\ClasseTable;
+use Cour\Model\Cour;
+use Cour\Model\CourTable;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 
@@ -34,16 +34,16 @@ use Zend\Db\TableGateway\TableGateway;
     public function getServiceConfig(){
         return array(
             'factories' => array(
-                'Classe\Model\ClasseTable' =>  function($sm) {
-                    $tableGateway = $sm->get('ClasseTableGateway');
-                    $table = new ClasseTable($tableGateway);
+                'Cour\Model\CourTable' =>  function($sm) {
+                    $tableGateway = $sm->get('CourTableGateway');
+                    $table = new CourTable($tableGateway);
                     return $table;
                 },
-                'ClasseTableGateway' => function ($sm) {
+                'CourTableGateway' => function ($sm) {
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                     $resultSetPrototype = new ResultSet();
-                    $resultSetPrototype->setArrayObjectPrototype(new Classe());
-                    return new TableGateway('classe', $dbAdapter, null, $resultSetPrototype);
+                    $resultSetPrototype->setArrayObjectPrototype(new Cour());
+                    return new TableGateway('cour', $dbAdapter, null, $resultSetPrototype);
                 },
             ),
         );
