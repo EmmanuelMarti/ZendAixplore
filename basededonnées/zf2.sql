@@ -1,14 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.10
+-- version 4.1.14
 -- http://www.phpmyadmin.net
 --
--- Client :  localhost:8889
--- Généré le :  Mer 27 Janvier 2016 à 12:03
--- Version du serveur :  5.5.42
--- Version de PHP :  5.6.10
+-- Client :  127.0.0.1
+-- Généré le :  Mer 24 Février 2016 à 15:06
+-- Version du serveur :  5.6.17
+-- Version de PHP :  5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Base de données :  `zf2`
@@ -20,11 +26,12 @@ SET time_zone = "+00:00";
 -- Structure de la table `album`
 --
 
-CREATE TABLE `album` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `album` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `artist` varchar(100) NOT NULL,
-  `title` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+  `title` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Contenu de la table `album`
@@ -43,10 +50,11 @@ INSERT INTO `album` (`id`, `artist`, `title`) VALUES
 -- Structure de la table `classe`
 --
 
-CREATE TABLE `classe` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `classe` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Contenu de la table `classe`
@@ -63,10 +71,11 @@ INSERT INTO `classe` (`id`, `name`) VALUES
 -- Structure de la table `cour`
 --
 
-CREATE TABLE `cour` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `cour` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -74,10 +83,11 @@ CREATE TABLE `cour` (
 -- Structure de la table `topic`
 --
 
-CREATE TABLE `topic` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `topic` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -85,84 +95,69 @@ CREATE TABLE `topic` (
 -- Structure de la table `user`
 --
 
-CREATE TABLE `user` (
-  `user_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `user` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `display_name` varchar(50) DEFAULT NULL,
   `password` varchar(128) NOT NULL,
-  `state` smallint(6) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `state` smallint(6) DEFAULT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Contenu de la table `user`
 --
 
 INSERT INTO `user` (`user_id`, `username`, `email`, `display_name`, `password`, `state`) VALUES
-(1, NULL, 'test@test.fr', NULL, '$2y$14$ryPxqgFtbUKAqMSK3kA4Tuvk1z2gl9j9e/GKdmYwG4MxcidrNIrvy', NULL);
+(2, 'admin', 'admin@admin.fr', 'Admin', '$2y$14$J0rZdltli/yGBPg2FubV7.NtomQNk6XNpVuUzlTKfl2ZKT86MTYH6', NULL),
+(3, 'dylan', 'dylan@dylan.fr', 'admin', 'Didou13840', NULL),
+(5, NULL, 'test@test.fr', 'admin', '$2y$14$J0rZdltli/yGBPg2FubV7.NtomQNk6XNpVuUzlTKfl2ZKT86MTYH6', NULL);
+
+-- --------------------------------------------------------
 
 --
--- Index pour les tables exportées
+-- Structure de la table `user_role`
 --
 
---
--- Index pour la table `album`
---
-ALTER TABLE `album`
-  ADD PRIMARY KEY (`id`);
+CREATE TABLE IF NOT EXISTS `user_role` (
+  `role_id` varchar(255) NOT NULL,
+  `is_default` tinyint(1) NOT NULL,
+  `parent` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`role_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Index pour la table `classe`
---
-ALTER TABLE `classe`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `cour`
---
-ALTER TABLE `cour`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `topic`
---
-ALTER TABLE `topic`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`user_id`),
-  ADD UNIQUE KEY `username` (`username`),
-  ADD UNIQUE KEY `email` (`email`);
-
---
--- AUTO_INCREMENT pour les tables exportées
+-- Contenu de la table `user_role`
 --
 
+INSERT INTO `user_role` (`role_id`, `is_default`, `parent`) VALUES
+('admin', 0, 'user'),
+('guest', 1, NULL),
+('user', 0, 'guest');
+
+-- --------------------------------------------------------
+
 --
--- AUTO_INCREMENT pour la table `album`
+-- Structure de la table `user_role_linker`
 --
-ALTER TABLE `album`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+
+CREATE TABLE IF NOT EXISTS `user_role_linker` (
+  `user_id` int(11) unsigned NOT NULL,
+  `role_id` varchar(255) NOT NULL,
+  PRIMARY KEY (`user_id`,`role_id`),
+  KEY `role_id` (`role_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 --
--- AUTO_INCREMENT pour la table `classe`
+-- Contenu de la table `user_role_linker`
 --
-ALTER TABLE `classe`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT pour la table `cour`
---
-ALTER TABLE `cour`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT pour la table `topic`
---
-ALTER TABLE `topic`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT pour la table `user`
---
-ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+
+INSERT INTO `user_role_linker` (`user_id`, `role_id`) VALUES
+(2, 'admin');
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
