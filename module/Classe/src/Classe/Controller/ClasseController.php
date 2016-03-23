@@ -13,7 +13,14 @@
              'classes' => $this->getClasseTable()->fetchAll(),
          ));
     }
-
+    /*
+    *
+    * Cette fonction va créer une nouvelle instance du formulaire de classe,
+    * Une fois ceci de fait, nous allons créer une instance de "Classe"
+    * Lorsque tout a été crée, et que le formulaire est valide,
+    * il va enregistrer en base de données et rediriger sur la page d'index.
+    *
+    */
      public function addAction(){
      	$form = new ClasseForm();
         $form->get('submit')->setValue('Add');
@@ -35,6 +42,13 @@
         return array('form' => $form);
     }
 
+    /*
+    *
+    * Cette action a pour but de récupérer l'id actuel de la classe,
+    * puis elle va construire un nouveau formulaire avec les infos
+    * concernant  l'id actuel .
+    *
+    */
      public function editAction(){
 
      	$id = (int) $this->params()->fromRoute('id', 0);
