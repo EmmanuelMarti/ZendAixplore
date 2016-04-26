@@ -49,7 +49,11 @@ return array(
                 array('route' => 'cour', 'roles' => array('user','admin')),
                 array('route' => 'cour/edit', 'roles' => array('admin')),
                 array('route' => 'cour/add', 'roles' => array('admin')),
+<<<<<<< HEAD
                 array('route' => 'cour/delete', 'roles' => array('admin'))
+=======
+                array('route' => 'cour/delete', 'roles' => array('admin')),
+>>>>>>> origin/master
             )
         )
     )

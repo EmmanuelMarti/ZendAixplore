@@ -13,7 +13,6 @@ class AlbumController extends AbstractActionController{
             'albums' => $this->getAlbumTable()->fetchAll(),
         ));
     }
-
     public function addAction(){
          $form = new AlbumForm();
          $form->get('submit')->setValue('Add');
