@@ -37,7 +37,19 @@ return array(
                 array('route' => 'home/logout', 'roles' => array('user', 'admin')),
                 array('route' => 'home/login', 'roles' => array('guest', 'user', 'admin')),
                 array('route' => 'home/authenticate', 'roles' => array('guest', 'user', 'admin')),
-                array('route' => 'home/register', 'roles' => array('guest'))
+                array('route' => 'home/register', 'roles' => array('guest')),
+                array('route' => 'classe', 'roles' => array('user','admin')),
+                array('route' => 'classe/edit', 'roles' => array('admin')),
+                array('route' => 'classe/add', 'roles' => array('admin')),
+                array('route' => 'classe/delete', 'roles' => array('admin')),
+                array('route' => 'topic', 'roles' => array('user','admin')),
+                array('route' => 'topic/edit', 'roles' => array('admin')),
+                array('route' => 'topic/add', 'roles' => array('admin')),
+                array('route' => 'topic/delete', 'roles' => array('admin')),
+                array('route' => 'cour', 'roles' => array('user','admin')),
+                array('route' => 'cour/edit', 'roles' => array('admin')),
+                array('route' => 'cour/add', 'roles' => array('admin')),
+                array('route' => 'cour/delete', 'roles' => array('admin'))
             )
         )
     )

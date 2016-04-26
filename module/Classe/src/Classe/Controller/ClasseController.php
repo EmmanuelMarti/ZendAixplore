@@ -14,6 +14,12 @@
          ));
     }
 
+    public function viewindexAction(){
+         return new ViewModel(array(
+             'classes' => $this->getClasseTable()->fetchAll(),
+         ));
+    }
+
      public function addAction(){
      	$form = new ClasseForm();
         $form->get('submit')->setValue('Add');

@@ -15,7 +15,11 @@
                         ->prependStylesheet($this->basePath('css/style.css'))
                         ->prependStylesheet($this->basePath('css/Layout.css'))
                         ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
-                        ->prependStylesheet($this->basePath('css/bootstrap.min.css')) ?>
+                        ->prependStylesheet($this->basePath('css/plugins/morris.css'))
+                        ->prependStylesheet($this->basePath('css/bootstrap.min.css')) 
+                        ->prependStylesheet($this->basePath('css/sb-admin.css'))
+                        ->prependStylesheet($this->basePath('font-awesome/css/font-awesome.min.css'))?>
+
 
         <!-- Scripts -->
         <?php echo $this->headScript()
@@ -27,22 +31,27 @@
 
     </head>
     <body>
-        <nav class="menulayout" role="navigation">
+        <nav class="navbar navbar-inverse navbar-fixed-top" id="menulayout" role="navigation">
             <div class="container">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="<?php echo $this->url('home') ?>"><img src="<?php echo $this->basePath('img/AixploreLogoPetit.png') ?>" alt="Zend Framework 2"/>&nbsp;<?php echo $this->translate('Aixplore') ?></a>
+                    <a class="navbar-brand" id="couleurtest" href="<?php echo $this->url('home') ?>"><img src="<?php echo $this->basePath('img/AixploreLogoPetit.png') ?>" alt="Zend Framework 2"/>&nbsp;<?php echo $this->translate('Aixplore') ?></a>
                 </div>
                 <div class="">
-                    <ul class="nav navbar-nav" id="test">
-                        <li class="active"><a href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Home') ?></a></li>
-                        <li class="active"><a href="<?php echo $this->url('classe') ?>"><?php echo $this->translate('Classe') ?></a></li>
-                        <li class="active"><a href="<?php echo $this->url('topic') ?>"><?php echo $this->translate('Topic') ?></a></li>
-                        <li class="active"><a href="<?php echo $this->url('cour') ?>"><?php echo $this->translate('Cours') ?></a></li>
+                    <ul class="nav navbar-nav">
+                        <li ><a href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Home') ?></a></li>
+                        <li ><a href="<?php echo $this->url('classe') ?>"><?php echo $this->translate('Class') ?></a></li>
+                        <li ><a href="<?php echo $this->url('topic') ?>"><?php echo $this->translate('Topic') ?></a></li>
+                        <li ><a href="<?php echo $this->url('cour') ?>"><?php echo $this->translate('Course') ?></a></li>
+                        <li ><a href="user/login"><?php echo $this->translate('Login') ?></a></li>
+                        <li ><a href="http://localhost/zendaixplore/public/classe/viewindex"><?php echo $this->translate('Class User') ?></a></li>
+                        <li ><a href="http://localhost/zendaixplore/public/topic/viewindex"><?php echo $this->translate('Topic User') ?></a></li>
+                        <li ><a href="http://localhost/zendaixplore/public/cour/viewindex"><?php echo $this->translate('Course User') ?></a></li>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
@@ -55,4 +64,8 @@
         </div> <!-- /container -->
         <?php echo $this->inlineScript() ?>
     </body>
+    <!-- Morris Charts JavaScript -->
+    <script src="public/js/plugins/morris/raphael.min.js"></script>
+    <script src="public/js/plugins/morris/morris.min.js"></script>
+    <script src="public/js/plugins/morris/morris-data.js"></script>
 </html>

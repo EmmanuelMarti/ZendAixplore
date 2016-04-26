@@ -8,8 +8,14 @@
 
  class TopicController extends AbstractActionController{
  	protected $topicTable;
-     public function indexAction(){
+    public function indexAction(){
      	 return new ViewModel(array(
+             'topics' => $this->getTopicTable()->fetchAll(),
+         ));
+    }
+
+    public function viewindexAction(){
+         return new ViewModel(array(
              'topics' => $this->getTopicTable()->fetchAll(),
          ));
     }

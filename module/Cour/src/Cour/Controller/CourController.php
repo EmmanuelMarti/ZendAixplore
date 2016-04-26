@@ -8,8 +8,14 @@
 
  class CourController extends AbstractActionController{
  	protected $courTable;
-     public function indexAction(){
+    public function indexAction(){
      	 return new ViewModel(array(
+             'cours' => $this->getCourTable()->fetchAll(),
+         ));
+    }
+
+    public function viewindexAction(){
+         return new ViewModel(array(
              'cours' => $this->getCourTable()->fetchAll(),
          ));
     }

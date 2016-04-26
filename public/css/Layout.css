@@ -1,22 +1,13 @@
-.menulayout {
-	display: block;
-	position:fixed;
-	top: 0;
-	right:0;
-	left:0;
-	z-index: 1030;
-	border-width:0 0 1px;
-	border: 1px solid transparent;
-	border-color:white;
-	border-radius: 0;
-	background-image:linear-gradient(to bottom, black, black 100%);
-	background-repeat: repeat-x;
+#menulayout {
 	background-color:white;
-	margin-bottom: 20px;
-	min-height: 120px;
-	box-sizing:border-box;
+	border-color:white;
+	background-image: linear-gradient(rgb(255, 255, 255) 0px, rgb(255, 255, 255) 100%);
 }
 
 #test{
 	text-align: bottom;
+}
+
+#couleurtest {
+	color:#4babf2;
 }
